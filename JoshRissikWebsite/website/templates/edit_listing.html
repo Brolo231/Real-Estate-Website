@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Listing</title>
+
+    <style>
+
+        .heading{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 60%;
+            margin-inline: auto;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        h1,
+        h2,
+        h3{
+            width: 50%;
+            margin-inline: auto;
+        }
+
+        h2{
+            color: rgb(204, 71, 71);
+        }
+
+        .edit-listing-container,
+        .thumbnail-container{
+            width: 50%;
+            margin-inline: auto;
+            margin-bottom: 2rem;
+        }
+
+        .thumbnail-container img{
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .delete_container{
+            width: 50%;
+            margin-inline: auto;
+            margin-bottom: 4rem;
+        }
+
+        .delete{
+            border: 1px solid rgb(148, 7, 26);
+            background-color: rgb(231, 64, 50);
+        }
+
+        .delete:hover{
+            border: 1px solid rgb(148, 7, 26);
+            background-color: rgb(177, 47, 37);
+        }
+
+        .delete:active{
+            border: 1px solid rgb(148, 7, 26);
+            background-color: rgb(231, 64, 50);
+        }
+
+        @media (max-width: 800px){
+            .heading{
+                width: 90%;
+            }
+
+            h1{
+                width: 80%;
+            }
+
+            .edit-listing-container{
+                width: 80%;
+            }
+
+            .thumbnail-container{
+                width: 80%;
+            }
+
+            .delete_container{
+                width: 80%;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="heading">
+        <a href="/admin-control"><h3>Admin Control</h3></a>
+        <a href="/"><h3>Home Page</h3></a>
+    </div>
+
+    <h1>Edit Listing</h1>
+
+    {% if message %}
+        <h2>{{message}}</h2>
+    {% endif %}
+
+    {% if listing %}
+    <div class="edit-listing-container">
+        <form action="/edit-listing" method="post">
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" value="{{listing.title}}" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">No. Bedrooms</label>
+            <input type="number" class="form-control" name="bedrooms" value="{{listing.bedrooms}}" step="0.5" required>
+          </div>
+            <div class="mb-3">
+            <label class="form-label">No. Bathrooms</label>
+            <input type="number" class="form-control" name="bathrooms" value="{{listing.bathrooms}}" step="0.5" required>
+          </div>
+            <div class="mb-3">
+            <label class="form-label">Description</label>
+                <textarea class="form-control" name="description" required>{{listing.description}}</textarea>
+          </div>
+            <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input type="number" class="form-control" name="price" value="{{listing.price}}" required>
+          </div>
+            <div class="mb-3">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" name="address" value="{{listing.address}}" required>
+          </div>
+            <div class="mb-3">
+            <label class="form-label">URL Link for listing</label>
+            <input type="text" class="form-control" name="url_link" value="{{listing.url_link}}">
+          </div>
+
+            <div>
+                You can upload listing images after the listing is created
+            </div><br>
+
+          <button name="button" value="update_listing" type="submit" class="btn btn-primary">Update Listing</button>
+            <input type="hidden" name="listing_id" value="{{listing.id}}">
+        </form>
+    </div>
+    {% endif %}
+
+    {% if listing %}
+        {% if not listing.thumbnail %}
+
+        <h1>Upload Thumbnail</h1>
+
+        <div class="thumbnail-container">
+
+            <form action="/edit-listing" method="POST" enctype="multipart/form-data">
+                <div>
+                    <label for="image">Select Thumbnail:</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>
+                <div>
+                    <label>Filename:</label>
+                    <input type="text" class="form-control" name="filename" value="thumbnail">
+                </div>
+                <br>
+                <div>
+                    <button class="btn btn-primary" type="submit" name="button" value="upload_thumbnail">Upload Thumbnail</button>
+                </div>
+                <input type="hidden" name="listing_id" value="{{listing.id}}">
+            </form>
+
+        </div>
+
+        {% else %}
+
+        <h1>Thumbnail</h1>
+
+        <div class="thumbnail-container">
+            <img src="{{url_for('static', filename='property_images/' + listing.thumbnail)}}">
+
+            <form action="/edit-listing" method="post">
+                <button class="btn btn-primary delete" name="button" value="delete_thumbnail">Delete Thumbnail</button>
+                <input type="hidden" name="listing_id" value="{{listing.id}}">
+            </form>
+        </div>
+
+        {% endif %}
+
+<!--        Image-2 HTML-->
+
+        {% if not listing.image2 %}
+
+        <h1>Upload Image-2</h1>
+        <div class="thumbnail-container">
+
+            <form action="/edit-listing" method="POST" enctype="multipart/form-data">
+                <div>
+                    <label for="image">Select Image 2:</label>
+                    <input type="file" name="image" accept="image/*" required>
+                </div>
+                <div>
+                    <label>Filename:</label>
+                    <input type="text" class="form-control" name="filename" value="image-2">
+                </div>
+                <br>
+                <div>
+                    <button class="btn btn-primary " type="submit" name="button" value="upload_image-2">Upload Image 2</button>
+                </div>
+                <input type="hidden" name="listing_id" value="{{listing.id}}">
+            </form>
+
+        </div>
+
+        {% else %}
+
+        <h1>Image 2</h1>
+
+        <div class="thumbnail-container">
+            <img src="{{url_for('static', filename='property_images/' + listing.image2)}}">
+
+            <form action="/edit-listing" method="post">
+                <button class="btn btn-primary delete" name="button" value="delete_image-2">Delete Image-2</button>
+                <input type="hidden" name="listing_id" value="{{listing.id}}">
+            </form>
+        </div>
+
+        {% endif %}
+
+
+        {% if not listing.image3 %}
+
+        <h1>Upload Image-3</h1>
+        <div class="thumbnail-container">
+
+            <form action="/edit-listing" method="POST" enctype="multipart/form-data">
+                <div>
+                    <label for="image">Select Image 3:</label>
+                    <input type="file" name="image" accept="image/*" required>
+                </div>
+                <div>
+                    <label>Filename:</label>
+                    <input type="text" class="form-control" name="filename" value="image-3">
+                </div>
+                <br>
+                <div>
+                    <button class="btn btn-primary" type="submit" name="button" value="upload_image-3">Upload Image 3</button>
+                </div>
+                <input type="hidden" name="listing_id" value="{{listing.id}}">
+            </form>
+
+        </div>
+
+        {% else %}
+
+        <h1>Image 3</h1>
+
+        <div class="thumbnail-container">
+            <img src="{{url_for('static', filename='property_images/' + listing.image3)}}">
+
+            <form action="/edit-listing" method="post">
+                <button class="btn btn-primary delete" name="button" value="delete_image-3">Delete Image-3</button>
+                <input type="hidden" name="listing_id" value="{{listing.id}}">
+            </form>
+        </div>
+
+        {% endif %}
+
+    <h1>Delete Listing</h1>
+    <div class="delete_container">
+        <form action="/delete-listing" method="post">
+            <button class="btn btn-primary delete">Delete Listing</button>
+            <input type="checkbox" required>
+            <input type="hidden" name="listing_id" value="{{listing.id}}">
+        </form>
+    </div>
+
+    {% endif %}
+
+</body>
+</html>

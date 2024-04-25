@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Control</title>
+
+    <style>
+
+        .admin_control_heading{
+            display: flex;
+            width: 70%;
+            margin-inline: auto;
+            justify-content: space-between;
+        }
+
+        form{
+            width: 70%;
+            margin-inline: auto;
+        }
+
+        hr{
+            width: 80%;
+            margin-inline: auto;
+        }
+
+        .listing_container button{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 2rem;
+            align-items: center;
+            border: 1px solid rgb(33, 37, 41);
+        }
+
+        .listing_container img{
+            width: 30%;
+            height: auto;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+
+        .listing_container p{
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 800px){
+            h1{
+                width: 80%;
+            }
+
+            .create_listing_container{
+                width: 80%;
+            }
+
+            form{
+                width: 90%;
+            }
+
+            .listing_container{
+                width: 90%;
+                margin-inline: auto;
+            }
+
+            .listing_container button{
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="admin_control_heading">
+        <h1>Admin Control</h1>
+        <a href="/"><h1>Home</h1></a>
+    </div>
+
+    <hr>
+
+    {% if message %}
+        <p>{{message}}</p>
+    {% endif %}
+
+    <form class="create_listing_container" action="/admin-control" method="post">
+        <button class="btn btn-primary" name="button" value="create_listing" type="submit">Create Listing</button>
+    </form>
+
+    <hr>
+
+    {% if properties %}
+        {% for property in properties %}
+        <div class="listing_container">
+            <form action="/edit-listing" method="post">
+                <button><p>{{property.title}}</p> {% if property.thumbnail %}<img src="{{url_for('static', filename='property_images/' + property.thumbnail)}}">{% endif %} </button>
+                <input type="hidden" name="listing_id" value="{{property.id}}">
+            </form>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>

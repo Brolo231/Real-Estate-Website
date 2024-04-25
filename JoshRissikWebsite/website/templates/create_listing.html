@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Listing</title>
+
+    <style>
+
+        .heading{
+            display: flex;
+            width: 50%;
+            margin-inline: auto;
+            justify-content: space-between;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .create-listing-container{
+            width: 50%;
+            margin-inline: auto;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 800px){
+            .heading{
+                width: 80%;
+            }
+
+            .create-listing-container{
+                width: 80%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="heading">
+        <h2>Create Listing</h2>
+        <a href="/admin-control"><h2>Admin Control</h2></a>
+    </div>
+
+    <div class="create-listing-container">
+        <form action="/create-listing" method="post">
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" placeholder="E.g., KYALAMI CREST, CROWTHORNE AH" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">No. Bedrooms</label>
+            <input type="number" class="form-control" name="bedrooms" placeholder="E.g., 4" step="0.5" required>
+          </div>
+            <div class="mb-3">
+            <label class="form-label">No. Bathrooms</label>
+            <input type="number" class="form-control" name="bathrooms" placeholder="E.g., 2.5" step="0.5" required>
+          </div>
+            <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" name="description" placeholder="E.g., Lovely family home includes a garden for pets..." required></textarea>
+          </div>
+            <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input type="number" class="form-control" name="price" placeholder="E.g., 4499000 (no decimals)" required>
+          </div>
+            <div class="mb-3">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" name="address" placeholder="E.g., 34 Atterbury Lane Douglasdale" required>
+          </div>
+            <div class="mb-3">
+            <label class="form-label">URL Link to listing (Property 24 etc)</label>
+            <input type="text" class="form-control" name="url_link" placeholder="E.g., https://www.property...">
+          </div>
+
+            <div>
+                You can upload listing images after the listing is created by clicking on a listing in admin control
+            </div><br>
+
+          <button type="submit" class="btn btn-primary">Create Listing</button>
+        </form>
+    </div>
+
+</body>
+</html>

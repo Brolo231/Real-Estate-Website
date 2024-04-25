@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+
+        h1{
+            width: 50%;
+            margin-inline: auto;
+            margin-top: 3rem;
+        }
+
+        .login-container{
+            width: 50%;
+            margin-inline: auto;
+            margin-top: 5rem;
+        }
+
+        @media(max-width: 800px){
+            h1{
+                width: 80%;
+            }
+
+            .login-container{
+                width: 80%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    {% if message %}
+        <h1>{{message}}</h1>
+    {% endif %}
+
+    <h1>Admin Login</h1>
+    <div class="login-container">
+        <form action="/admin-login" method="post">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload Form</title>
+</head>
+<body>
+
+    <h1>Upload an Image</h1>
+    <form action="/test" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="image">Select Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+        <div>
+            <label for="filename">Filename:</label>
+            <input type="text" id="filename" name="filename" placeholder="Enter filename (optional)">
+        </div>
+        <div>
+            <button type="submit">Upload</button>
+        </div>
+    </form>
+
+    <hr>
+
+    <form action="/delete_image" method="post">
+        <input type="text" name="filename" placeholder="Image Name">
+        <button>Delete</button>
+    </form>
+
+</body>
+</html>
