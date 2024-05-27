@@ -40,7 +40,7 @@ This project is a website created using Flask, HTML, and CSS, along with a datab
 ### Home Page
 ![Home Page](screenshots/HomePage.png)
 ### Responive Home Page
-<img src="screenshots/IMG_9480.jpg" alt="Responsive Home Page" width="400" height="auto"></>
+<img src="screenshots/IMG_9480.jpg" alt="Responsive Home Page" width="400" height="auto">.
 ### Admin Control Images
 ![Admin Control](screenshots/AdminControl.png)
 ![Create Listing](screenshots/CreateListing.png)
