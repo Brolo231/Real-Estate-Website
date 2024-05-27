@@ -5,9 +5,10 @@
   <a href="#introduction"><li>Introduction</li></a>
   <a href="#features"><li>Features</li></a>
     <ul>
-      <li>Customer Side</li>
-      <li>Admin Side</li>
+      <a href="#customer-side"><li>Customer Side</li></a>
+      <a href="#admin-side"><li>Admin Side</li></a>
     </ul>
+  
 </ul>
 
 <h1 class = "test">Test</h1>
