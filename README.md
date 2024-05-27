@@ -37,11 +37,11 @@ This project is a website created using Flask, HTML, and CSS, along with a datab
 - Access the admin side by navigating [here](https://joshrissikev.pythonanywhere.com/admin-login). (To view the admin side/get login details [contact me](#contact).)
 
 ## Screenshots
-- Home Page
+### Home Page
 ![Home Page](screenshots/HomePage.png)
-- Responive Home Page
+### Responive Home Page
 ![Responsive Home Page](screenshots/Responsive-HomePage.jpg)
-- Admin Control Images
+### Admin Control Images
 ![Admin Control](screenshots/AdminControl.png)
 ![Create Listing](screenshots/CreateListing.png)
 ![Delete Listing](screenshots/Delete.png)
