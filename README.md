@@ -34,7 +34,7 @@ This project is a website created using Flask, HTML, and CSS, along with a datab
 
 ## Usage
 - Access the customer side by navigating [here](https://joshrissikev.pythonanywhere.com/).
-- Access the admin side by navigating to `http://127.0.0.1:5000/admin`. (You may need to log in using admin credentials.)
+- Access the admin side by navigating to `http://127.0.0.1:5000/admin`. (To view the admin side [contact me](#contact).)
 
 ## Screenshots
 ![Home Page](path/to/homepage-screenshot.png)
